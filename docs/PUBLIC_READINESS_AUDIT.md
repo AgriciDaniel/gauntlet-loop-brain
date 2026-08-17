@@ -1,6 +1,6 @@
 # Public-Readiness Audit
 
-**Audit date:** 2026-08-17
+**Audit date:** 2026-08-18
 
 **Scope:** current working candidate, all reachable Git blobs and commits,
 ignored release archives, project metadata, dependencies, and GitHub governance.
