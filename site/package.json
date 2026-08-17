@@ -3,10 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "sanitize": "node scripts/sanitize-public.mjs",
-    "build": "quartz build && node scripts/sanitize-public.mjs"
+    "sanitize": "node scripts/sanitize-public.mjs"
   },
-  "devDependencies": {
-    "@quartz-org/quartz": "^4.5.2"
+  "engines": {
+    "node": ">=22"
   }
 }

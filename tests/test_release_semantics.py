@@ -111,6 +111,44 @@ class ExperimentalReleaseGateTests(unittest.TestCase):
                 "public.md",
             )
 
+    def test_modern_github_token_is_rejected_without_echoing_it(self) -> None:
+        token = b"gho_" + b"a" * 36
+        with self.assertRaisesRegex(SystemExit, r"github token found in public\.md") as raised:
+            package_release.scan_bytes(token, "public.md", ".md")
+        self.assertNotIn(token.decode("ascii"), str(raised.exception))
+
+    def test_email_address_is_rejected_without_echoing_it(self) -> None:
+        address = b"private.person" + b"@" + b"example.test"
+        with self.assertRaisesRegex(SystemExit, r"email address found in public\.md") as raised:
+            package_release.scan_bytes(address, "public.md", ".md")
+        self.assertNotIn(address.decode("ascii"), str(raised.exception))
+
+    def test_hash_is_not_mistaken_for_a_secret(self) -> None:
+        package_release.scan_bytes(b"a" * 64, "manifest.json", ".json")
+
+    def test_only_synthetic_raw_paths_are_allowlisted_for_the_repository(self) -> None:
+        self.assertIn(
+            "examples/sample-vault/.raw/sources/sample-source.md",
+            package_release.PUBLIC_REPOSITORY_RAW_ALLOWLIST,
+        )
+        self.assertNotIn(
+            "examples/client-vault/.raw/sources/customer-export.csv",
+            package_release.PUBLIC_REPOSITORY_RAW_ALLOWLIST,
+        )
+
+    def test_non_fixture_raw_path_blocks_source_scan(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="gauntlet-private-raw-") as tmp:
+            repo = Path(tmp)
+            private_source = repo / "examples" / "client-vault" / ".raw" / "sources" / "customer-export.csv"
+            private_source.parent.mkdir(parents=True)
+            private_source.write_text("synthetic test data\n", encoding="utf-8")
+            with (
+                patch.object(package_release, "REPO", repo),
+                patch.object(package_release, "source_files", return_value=[private_source]),
+                self.assertRaisesRegex(SystemExit, "non-fixture raw path"),
+            ):
+                package_release.scan_source_tree()
+
     def test_security_url_must_match_github_origin(self) -> None:
         with tempfile.TemporaryDirectory(prefix="gauntlet-security-gate-") as tmp:
             repo = Path(tmp)

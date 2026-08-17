@@ -13,23 +13,24 @@ BRAIN_TITLE = "Gauntlet Loop Brain"
 BRAIN_DOMAIN = "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 BRAIN_TAGLINE = "Source cited Obsidian operating brain for designing, running, evaluating, and governing one-prompt multi-agent improvement loops."
 
-CB = "#1A73E8"
-CR = "#D93025"
-CY = "#F9AB00"
-CG = "#1E8E3E"
-OB = "#0B57D0"
-TB = "#D3E3FD"
-TR = "#FAD2CF"
-TY = "#FEEFC3"
-TG = "#CEEAD6"
-NB = "#0B57D0"
-NR = "#C5221F"
-NY = "#976800"
-NG = "#137333"
-INK = "#202124"
-SUB = "#5F6368"
-LINE = "#E8EAED"
-PANEL = "#F8F9FA"
+CB = "#22D3EE"
+CR = "#8B5CF6"
+CY = "#FB7185"
+CG = "#FBBF24"
+OB = "#8BE9F7"
+TB = "#12364B"
+TR = "#2B214D"
+TY = "#472439"
+TG = "#493919"
+NB = "#C8F8FF"
+NR = "#E9DCFF"
+NY = "#FFE3E9"
+NG = "#FFF0B8"
+INK = "#F8FAFC"
+SUB = "#AAB4DB"
+LINE = "#303866"
+PANEL = "#111631"
+CANVAS = "#070A1D"
 FONT = '"Google Sans","Product Sans",Roboto,"Segoe UI",Arial,sans-serif'
 REDUCED = "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
 
@@ -49,7 +50,7 @@ def doc(w: int, h: int, title: str, desc: str, style: str, body: str, bg: str = 
     )
 
 
-def card(w: int, h: int, bg: str = "#fff", border: str = LINE, r: int = 26) -> str:
+def card(w: int, h: int, bg: str = PANEL, border: str = LINE, r: int = 26) -> str:
     return f'<rect x="10" y="10" width="{w - 20}" height="{h - 20}" rx="{r}" fill="{bg}" stroke="{border}"/>'
 
 
@@ -167,16 +168,16 @@ def metric_row(items: list[tuple[int, str, str, str, str]]) -> str:
     if not items:
         return ""
     x0 = 50
-    y = 288
+    y = 308
     width = 250
     gap = 18
-    row = f'<text class="metric" x="{x0}" y="{y - 14}" font-size="13" letter-spacing="2" font-weight="800" fill="{SUB}">READ FROM VAULT DATA</text>'
+    row = f'<text class="metric" x="{x0}" y="{y - 14}" font-size="12" letter-spacing="2.2" font-weight="800" fill="{OB}">LIVE VAULT SIGNALS</text>'
     for i, (value, label, solid, tint, on_tint) in enumerate(items[:4]):
         x = x0 + i * (width + gap)
         row += (
             f'<g class="metric" style="animation-delay:{0.86 + i * 0.08:.2f}s">'
-            f'<rect x="{x}" y="{y}" width="{width}" height="54" rx="16" fill="{tint}" stroke="{LINE}"/>'
-            f'<circle cx="{x + 28}" cy="{y + 27}" r="7" fill="{solid}"/>'
+            f'<rect x="{x}" y="{y}" width="{width}" height="54" rx="16" fill="{tint}" stroke="{solid}" stroke-opacity=".45"/>'
+            f'<circle class="pulse" cx="{x + 28}" cy="{y + 27}" r="7" fill="{solid}"/>'
             f'<text x="{x + 48}" y="{y + 24}" font-size="18" font-weight="800" fill="{on_tint}">{value}</text>'
             f'<text x="{x + 48}" y="{y + 42}" font-size="12" font-weight="700" fill="{on_tint}">{esc(label)}</text>'
             f"</g>"
@@ -188,47 +189,54 @@ def build_svg(vault: Path, repo: Path) -> str:
     subtitle = BRAIN_TAGLINE or f"Source cited Obsidian operating brain for {BRAIN_DOMAIN}."
     subtitle_lines = wrap(subtitle, 96, 2)
     subtitle_svg = "".join(
-        f'<text class="head" style="animation-delay:{0.08 + i * 0.04:.2f}s" x="50" y="{96 + i * 20}" font-size="14" fill="{SUB}">{esc(line)}</text>'
+        f'<text class="head" style="animation-delay:{0.08 + i * 0.04:.2f}s" x="50" y="{115 + i * 18}" font-size="13" fill="{SUB}">{esc(line)}</text>'
         for i, line in enumerate(subtitle_lines)
     )
     stages = [
-        ("Raw sources", "immutable .raw inputs", CB),
-        ("Linked wiki memory", "notes, links, canon", CR),
-        ("Checks and gates", "audit, sources, confidence", CY),
-        ("Reports and deliverables", "read only outputs", CG),
+        ("Evidence", "immutable inputs", CB),
+        ("Memory", "linked notes and canon", CR),
+        ("Gates", "tests, sources, confidence", CY),
+        ("Decisions", "bounded, honest outputs", CG),
     ]
-    cw = 250
-    y = 150
-    xs = [50, 350, 650, 950]
+    cw = 264
+    y = 146
+    xs = [42, 326, 610, 894]
     chips = ""
     for i, (label, sub, col) in enumerate(stages):
         x = xs[i]
         chips += (
             f'<g class="chip" style="animation-delay:{0.30 + i * 0.16:.2f}s">'
-            f'<rect x="{x}" y="{y}" width="{cw}" height="96" rx="16" fill="#fff" stroke="{LINE}"/>'
-            f'<rect x="{x}" y="{y}" width="7" height="96" rx="3.5" fill="{col}"/>'
-            f'<circle cx="{x + 34}" cy="{y + 34}" r="9" fill="{col}"/>'
-            f'<text x="{x + 56}" y="{y + 40}" font-size="18" font-weight="800" fill="{INK}">{esc(label)}</text>'
-            f'<text x="{x + 24}" y="{y + 70}" font-size="13" fill="{SUB}">{esc(sub)}</text>'
+            f'<rect x="{x}" y="{y}" width="{cw}" height="104" rx="20" fill="#151B43" stroke="{col}" stroke-opacity=".55"/>'
+            f'<rect x="{x}" y="{y}" width="7" height="104" rx="3.5" fill="{col}"/>'
+            f'<circle class="pulse" cx="{x + 35}" cy="{y + 35}" r="10" fill="{col}"/>'
+            f'<text x="{x + 58}" y="{y + 41}" font-size="19" font-weight="800" fill="{INK}">{esc(label)}</text>'
+            f'<text x="{x + 24}" y="{y + 75}" font-size="13" fill="{SUB}">{esc(sub)}</text>'
+            f'<text x="{x + cw - 24}" y="{y + 78}" font-size="40" font-weight="900" fill="{col}" opacity=".16" text-anchor="end">0{i + 1}</text>'
             f"</g>"
         )
     arrows = ""
     for i in range(3):
-        ax = xs[i] + cw + 10
+        ax = xs[i] + cw + 4
         arrows += (
             f'<g class="arrow" style="animation-delay:{0.50 + i * 0.16:.2f}s">'
-            f'<line x1="{ax}" y1="{y + 48}" x2="{ax + 28}" y2="{y + 48}" stroke="{SUB}" stroke-width="3" stroke-linecap="round"/>'
-            f'<path d="M{ax + 24},{y + 42} L{ax + 32},{y + 48} L{ax + 24},{y + 54}" fill="none" stroke="{SUB}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<line class="flow" x1="{ax}" y1="{y + 52}" x2="{ax + 12}" y2="{y + 52}" stroke="{SUB}" stroke-width="3" stroke-linecap="round"/>'
+            f'<path d="M{ax + 8},{y + 46} L{ax + 16},{y + 52} L{ax + 8},{y + 58}" fill="none" stroke="{SUB}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>'
             f"</g>"
         )
     style = """  .head,.chip,.arrow,.metric{animation:fu .55s ease backwards}
-  @keyframes fu{from{opacity:0;transform:translateY(10px)}}"""
+  .flow{stroke-dasharray:5 7;animation:dash 1.6s linear infinite}
+  .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 3s ease-in-out infinite}
+  @keyframes fu{from{opacity:0;transform:translateY(10px)}}
+  @keyframes dash{to{stroke-dashoffset:-24}}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.15);opacity:.72}}"""
     body = (
-        f"{card(1200, 370)}\n"
-        f'<text class="head" x="50" y="70" font-size="22" font-weight="800" fill="{INK}">How {esc(BRAIN_TITLE)} works</text>'
+        f"{card(1200, 390)}\n"
+        f'<text class="head" x="50" y="60" font-size="12" letter-spacing="2.4" font-weight="800" fill="{OB}">THE EVIDENCE CIRCUIT</text>'
+        f'<text class="head" x="50" y="88" font-size="24" font-weight="800" fill="{INK}">How {esc(BRAIN_TITLE)} turns sources into bounded decisions</text>'
         f"{subtitle_svg}{chips}{arrows}{metric_row(metrics(vault, repo))}"
+        f'<g class="metric" style="animation-delay:1.12s"><rect x="866" y="308" width="292" height="54" rx="16" fill="#171D46" stroke="{LINE}"/><path d="M892 335c13-17 33-17 46 0-13 17-33 17-46 0z" fill="none" stroke="{CB}" stroke-width="2"/><circle cx="915" cy="335" r="6" fill="{CY}"/><text x="952" y="331" font-size="13" font-weight="800" fill="{INK}">inspect, challenge, stop</text><text x="952" y="350" font-size="12" fill="{SUB}">human authority stays outside the loop</text></g>'
     )
-    return doc(1200, 370, f"{BRAIN_TITLE} relationship map", "Source to memory to gated deliverable.", style, body)
+    return doc(1200, 390, f"{BRAIN_TITLE} relationship map", "Evidence moves through linked memory and protected gates into bounded decisions.", style, body, bg=CANVAS)
 
 
 def main(argv: list[str] | None = None) -> int:

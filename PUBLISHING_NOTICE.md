@@ -31,13 +31,18 @@ Public content policy: publish only source-linked synthesis, compliant short quo
 
 ## What Must Stay Private
 
-- `.raw/` source captures and `.raw/.manifest.json`.
+- Real `.raw/` source captures and client manifests.
 - Credentials, tokens, cookies, OAuth material, private user data, and local paths.
 - Full third-party documents or large source excerpts.
 - Internal ledgers excluded by public policy.
 - Unreviewed generated archives in `dist/`.
 
-## Public Exclusions
+The source repository contains only an empty template manifest and a synthetic
+sample fixture under `.raw/`. Those exact paths are allowlisted and scanned.
+Any additional tracked `.raw/` path blocks release packaging. Public website
+and ZIP outputs still exclude every `.raw/` path.
+
+## Website and ZIP Exclusions
 
 - `.raw`
 - `.obsidian`

@@ -3,11 +3,11 @@
 Do not open public issues containing credentials or private client data.
 
 Report sensitive issues through the repository host's private vulnerability
-reporting channel. The owner must enable that channel and replace this sentence
-with the exact repository advisory URL before making the repository public. If
-no private channel is available, do not publish sensitive details in an issue.
+reporting channel. The owner must enable that channel before making the
+repository public. If no private channel is available, do not publish sensitive
+details in an issue.
 
-Private vulnerability reporting URL: OWNER_MUST_SET_AFTER_REPOSITORY_TARGET_EXISTS
+Private vulnerability reporting URL: https://github.com/AgriciDaniel/gauntlet-loop-brain/security/advisories/new
 
 Release gates scan for common API keys, private keys, OAuth tokens, local home
 paths, and forbidden ZIP entries.
