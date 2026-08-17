@@ -69,8 +69,8 @@ equal-budget advantage over simpler workflows remain unvalidated. Those market
 claims are separate from publication safety. The repository uses the Apache
 License 2.0. An experimental public release is allowed only after clean Git
 commit provenance is available, the repository target and exact private-reporting
-URL agree, and the public artifact safety gates pass. Until then, every package
-is internal only.
+URL agree, private vulnerability reporting is verified enabled, and the public
+artifact safety gates pass. Until then, every package is internal only.
 
 It ships two artifacts:
 

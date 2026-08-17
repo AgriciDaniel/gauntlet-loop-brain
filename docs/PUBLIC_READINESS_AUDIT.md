@@ -22,8 +22,8 @@ equal-budget advantage remain unvalidated.
 
 ## Evidence
 
-- Scanned 324 reachable Git blobs across six commits with credential, email,
-  private-key, token, and local-path patterns. No findings.
+- Scanned every reachable Git blob, including the final `main` candidate, with
+  credential, email, private-key, token, and local-path patterns. No findings.
 - Reviewed Git author and committer metadata. It contains GitHub noreply or
   known GitHub service addresses, not personal email addresses.
 - Scanned the complete working tree. Ignored Python bytecode caches were the
