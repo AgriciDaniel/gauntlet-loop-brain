@@ -76,7 +76,14 @@ def main() -> int:
     }
     assert "release type is internal-only" in release_manifest["publication_blockers"]
     assert "final license has not been selected by the owner" in release_manifest["publication_blockers"]
-    assert "release provenance is not bound to a Git commit" in release_manifest["publication_blockers"]
+    provenance_blocker = "release provenance is not bound to a Git commit"
+    if (REPO / ".git").exists():
+        expected_commit = run_cmd(["git", "rev-parse", "HEAD"]).stdout.strip()
+        assert release_manifest["git_commit"] == expected_commit
+        assert provenance_blocker not in release_manifest["publication_blockers"]
+    else:
+        assert release_manifest["git_commit"] is None
+        assert provenance_blocker in release_manifest["publication_blockers"]
     excluded_parts = {".raw", ".obsidian", "runs", "private"}
     excluded_names = {"hot.md", "log.md"}
     excluded_paths = {"references/source-ledger.json", "references/claim-ledger.md"}
