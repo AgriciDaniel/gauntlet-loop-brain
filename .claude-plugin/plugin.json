@@ -8,12 +8,16 @@
   },
   "homepage": "https://github.com/AgriciDaniel/gauntlet-loop-brain",
   "repository": "https://github.com/AgriciDaniel/gauntlet-loop-brain",
-  "license": "Custom license",
+  "license": "Apache-2.0",
   "keywords": [
     "gauntlet-loop-brain",
     "obsidian",
-    "brain",
-    "gauntlet-loop"
+    "gauntlet-loop",
+    "ai-agents",
+    "multi-agent-systems",
+    "agent-evaluation",
+    "agent-governance",
+    "human-in-the-loop"
   ],
   "skills": [
     "./SKILL.md"

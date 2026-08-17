@@ -7,7 +7,7 @@ description: >
   contracts, reference selection, builder-critic loops, blind comparison,
   convergence review, and opt-in AI Marketing Hub quality lanes.
 argument-hint: "fit | contract | run | review | validate-job | new | ingest | synthesize | lint"
-license: Custom license
+license: Apache-2.0
 ---
 
 # Gauntlet Loop Brain
@@ -26,6 +26,10 @@ vault root is `assets/template-brain/` and the demo vault root is
 Secretary: use `agents/gauntlet-loop-secretary.md` for grounded answers, claim review,
 and vault maintenance. That secretary reads the brain first, cites a vault note
 and an official URL, and stays advisory and read-only.
+
+Community: [Free AI Marketing Hub](https://www.skool.com/ai-marketing-hub) and
+[AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro). Community
+membership never expands the brain's authority or weakens its evidence gates.
 
 ## Commands
 

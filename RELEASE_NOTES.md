@@ -1,10 +1,12 @@
 # Release Notes
 
-## 0.1.0 Public Review Candidate, 2026-08-17
+## v0.1.0, Public Experimental Preview (planned)
 
-Gauntlet Loop Brain is ready for private review as a demo-verified research
-prototype. This candidate focuses on understandable documentation, reproducible
-vault behavior, and honest release boundaries.
+**Status:** private review candidate, not published and not tagged.
+
+Gauntlet Loop Brain is a demo-verified research prototype. This candidate
+focuses on understandable documentation, reproducible vault behavior, and
+honest release boundaries.
 
 ### Highlights
 
@@ -14,10 +16,12 @@ vault behavior, and honest release boundaries.
   evidence-linked memory.
 - A source-cited Obsidian template, sample vault, agent skill, job contract,
   release packager, and installation safeguards.
+- A pinned deterministic sample-vault tree hash with a mutation-sensitive
+  negative test.
 - Expanded secret and sensitive-data scanning for source files and packaged
   artifacts.
-- CI with read-only permissions, immutable action pins, branch protection, and
-  required review before `main` changes.
+- CI with read-only permissions, immutable action pins, and protected `main`.
+- Simple Free and Pro AI Marketing Hub community links.
 
 ### Honest Limits
 
@@ -25,14 +29,24 @@ vault behavior, and honest release boundaries.
 - Buyer demand, retention, and equal-budget advantage over simpler workflows
   remain unvalidated.
 - The current repository remains private while the owner reviews the candidate.
-- Public release still requires the owner-selected final license and enabled
-  private vulnerability reporting.
+- The owner selected the Apache License 2.0 for source distribution.
+- Public visibility still requires enabled private vulnerability reporting.
+
+### Tag Policy
+
+- Stable releases: `vMAJOR.MINOR.PATCH`, beginning with `v0.1.0`.
+- Prereleases: `vMAJOR.MINOR.PATCH-rc.N`, beginning with `v0.1.0-rc.1`.
+- A tag identifies one reviewed clean commit and its matching release artifacts.
+- An experimental tag never implies market readiness.
+- No tag or GitHub release exists yet.
 
 ### Verification Contract
 
 ```bash
 python -m compileall scripts gauntlet_loop_brain tests
 python tests/test_pipeline.py
+python scripts/build_demo_vault.py
+python scripts/hash_sample_vault.py --check
 python scripts/audit_brain.py --json
 python scripts/package_release.py --version 0.1.0
 ```

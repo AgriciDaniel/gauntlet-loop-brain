@@ -10,7 +10,7 @@ advantage remain unvalidated. It must not imply that those studies passed.
 - `scaffold` and `demo` are internal-only and can never set
   `publication_ready: true`.
 - `experimental` is the only public path before market validation. It requires
-  the final owner-selected license, a clean Git commit, a configured repository
+  the Apache License 2.0, a clean Git commit, a configured repository
   target, the exact matching private-reporting URL, and all archive safety gates.
 - `market-ready` requires the same publication gates plus the unchanged
   market-ready audit. Experimental publication does not weaken that gate.

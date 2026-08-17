@@ -47,6 +47,7 @@ def main() -> int:
         run(["scripts/lint_vault.py", "--vault", str(vault)])
         assert (vault / "weekly-report.html").exists()
     run(["scripts/build_demo_vault.py"])
+    run(["scripts/hash_sample_vault.py", "--check"])
     audit = run(["scripts/audit_brain.py", "--json", "--report-only"])
     audit_result = json.loads(audit.stdout)
     market_ready = audit_result.get("market_ready") is True or audit_result.get("status") == "market-ready"
@@ -75,7 +76,7 @@ def main() -> int:
         "retention_validated": False,
     }
     assert "release type is internal-only" in release_manifest["publication_blockers"]
-    assert "final license has not been selected by the owner" in release_manifest["publication_blockers"]
+    assert "final license has not been selected by the owner" not in release_manifest["publication_blockers"]
     provenance_blocker = "release provenance is not bound to a Git commit"
     if (REPO / ".git").exists():
         expected_commit = run_cmd(["git", "rev-parse", "HEAD"]).stdout.strip()

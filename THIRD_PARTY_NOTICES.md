@@ -1,8 +1,8 @@
 # Third-Party Notices
 
-The Gauntlet Loop Brain's original code and prose are covered only by the
-repository's declared license. Links, titles, research summaries, and short
-attributed excerpts do not transfer ownership of third-party works.
+The Gauntlet Loop Brain's original code and prose are distributed under the
+Apache License 2.0. Links, titles, research summaries, and short attributed
+excerpts do not transfer ownership of third-party works.
 
 The research pack references work by Matt Shumer, Anthropic, OpenAI, Google
 DeepMind, and academic authors listed in `references/source-ledger.json`. Those

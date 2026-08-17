@@ -17,17 +17,22 @@
         "name": "Daniel Agrici"
       },
       "repository": "https://github.com/AgriciDaniel/gauntlet-loop-brain",
-      "license": "Custom license",
+      "license": "Apache-2.0",
       "category": "gauntlet-loop",
       "tags": [
         "obsidian",
-        "brain",
-        "gauntlet-loop"
+        "gauntlet-loop",
+        "ai-agents",
+        "multi-agent-systems",
+        "agent-evaluation",
+        "agent-governance"
       ],
       "keywords": [
         "gauntlet-loop-brain",
         "gauntlet-loop",
-        "obsidian"
+        "obsidian",
+        "multi-agent-systems",
+        "human-in-the-loop"
       ]
     }
   ]

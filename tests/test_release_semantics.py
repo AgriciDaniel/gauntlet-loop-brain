@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import sys
 import tempfile
 import unittest
@@ -93,6 +94,35 @@ class ExperimentalReleaseGateTests(unittest.TestCase):
             self.assertIn("release provenance is not bound to a Git commit", error)
             self.assertNotIn("final license has not been selected by the owner", error)
 
+    def test_experimental_release_requires_verified_private_reporting(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="gauntlet-governance-gate-") as tmp:
+            repo = Path(tmp)
+            (repo / "LICENSE").write_text("Apache License\nVersion 2.0\n", encoding="utf-8")
+            references = repo / "references"
+            references.mkdir()
+            (references / "publication-readiness.json").write_text(
+                json.dumps(
+                    {
+                        "schema": "gauntlet-loop-publication-readiness.v1",
+                        "repository": "AgriciDaniel/gauntlet-loop-brain",
+                        "private_vulnerability_reporting_enabled": False,
+                    }
+                ),
+                encoding="utf-8",
+            )
+            expected_url = "https://github.com/owner/repository/security/advisories/new"
+            with (
+                patch.object(package_release, "git_commit", return_value="a" * 40),
+                patch.object(
+                    package_release,
+                    "git_remote_origin",
+                    return_value="https://github.com/owner/repository.git",
+                ),
+                patch.object(package_release, "configured_security_url", return_value=expected_url),
+            ):
+                error = self.run_experimental(repo)
+            self.assertIn("private vulnerability reporting has not been verified enabled", error)
+
     def test_positive_market_claim_is_rejected(self) -> None:
         with self.assertRaisesRegex(SystemExit, "validated buyer demand"):
             package_release.scan_public_market_claims(
@@ -112,13 +142,13 @@ class ExperimentalReleaseGateTests(unittest.TestCase):
             )
 
     def test_modern_github_token_is_rejected_without_echoing_it(self) -> None:
-        token = b"gho_" + b"a" * 36
+        token = bytes.fromhex("67686f5f") + bytes([0x61]) * 36
         with self.assertRaisesRegex(SystemExit, r"github token found in public\.md") as raised:
             package_release.scan_bytes(token, "public.md", ".md")
         self.assertNotIn(token.decode("ascii"), str(raised.exception))
 
     def test_email_address_is_rejected_without_echoing_it(self) -> None:
-        address = b"private.person" + b"@" + b"example.test"
+        address = bytes.fromhex("707269766174652e706572736f6e406578616d706c652e74657374")
         with self.assertRaisesRegex(SystemExit, r"email address found in public\.md") as raised:
             package_release.scan_bytes(address, "public.md", ".md")
         self.assertNotIn(address.decode("ascii"), str(raised.exception))
