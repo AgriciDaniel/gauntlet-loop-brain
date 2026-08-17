@@ -7,8 +7,13 @@ import json
 import re
 import shutil
 import sys
-from datetime import date
 from pathlib import Path
+
+REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from gauntlet_loop_brain.clock import reference_date
 
 
 MAX_BYTES = 10 * 1024 * 1024
@@ -40,13 +45,14 @@ def main(argv: list[str] | None = None) -> int:
     update_manifest(vault, target.relative_to(vault).as_posix(), digest, args.source_type)
     source_note = collision_safe_path(vault / "wiki" / "sources", f"{safe_title(source.stem)}.md", digest)
     source_note.parent.mkdir(parents=True, exist_ok=True)
+    today = reference_date()
     source_note.write_text(f"""---
 type: "source"
 title: "{source.stem}"
 domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 status: "active"
-created: "{date.today().isoformat()}"
-updated: "{date.today().isoformat()}"
+created: "{today}"
+updated: "{today}"
 tags:
   - "#domain/designing-running-evaluating-and-governing-one-prompt-multi-agen"
   - "#type/source"
@@ -67,7 +73,7 @@ sources:
 
 - Path: `{target.relative_to(vault).as_posix()}`
 - Hash: `{digest}`
-- Retrieved: {date.today().isoformat()}
+- Retrieved: {today}
 - Type: {args.source_type}
 
 ## Compiled Truth
@@ -126,7 +132,7 @@ def update_manifest(vault: Path, rel: str, digest: str, source_type: str) -> Non
     data.setdefault("sources", []).append({
         "path": rel,
         "sha256": digest,
-        "retrieved": date.today().isoformat(),
+        "retrieved": reference_date(),
         "source_type": source_type,
     })
     path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
@@ -141,7 +147,7 @@ def safe_title(value: str) -> str:
 def append_log(vault: Path, message: str) -> None:
     log = vault / "wiki" / "log.md"
     if log.exists():
-        text = log.read_text(encoding="utf-8").rstrip() + f"\n- {date.today().isoformat()} - {message}\n"
+        text = log.read_text(encoding="utf-8").rstrip() + f"\n- {reference_date()} - {message}\n"
         log.write_text(text, encoding="utf-8")
 
 

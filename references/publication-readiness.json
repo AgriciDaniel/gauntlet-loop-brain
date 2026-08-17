@@ -1,0 +1,17 @@
+{
+  "schema": "gauntlet-loop-publication-readiness.v1",
+  "repository": "AgriciDaniel/gauntlet-loop-brain",
+  "verified_at": "2026-08-18",
+  "visibility": "private",
+  "private_vulnerability_reporting_enabled": false,
+  "secret_scanning_available": false,
+  "code_scanning_available": false,
+  "dependabot_alerts_enabled": true,
+  "automated_security_fixes_enabled": true,
+  "actions_policy": "github-owned-actions-only",
+  "notes": [
+    "The repository remains private by owner instruction.",
+    "Public release packaging stays blocked until private vulnerability reporting is verified enabled.",
+    "Secret scanning and code scanning should be rechecked immediately before any visibility change."
+  ]
+}

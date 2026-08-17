@@ -8,7 +8,8 @@ version = "0.1.0"
 description = "Gauntlet Loop Brain Obsidian brain template and script layer."
 readme = "README.md"
 requires-python = ">=3.11"
-license = {text = "Custom license"}
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [{name = "Daniel Agrici"}]
 dependencies = []
 
@@ -16,6 +17,9 @@ dependencies = []
 Homepage = "https://github.com/AgriciDaniel/gauntlet-loop-brain"
 Repository = "https://github.com/AgriciDaniel/gauntlet-loop-brain"
 Issues = "https://github.com/AgriciDaniel/gauntlet-loop-brain/issues"
+Security = "https://github.com/AgriciDaniel/gauntlet-loop-brain/security/advisories/new"
+Community = "https://www.skool.com/ai-marketing-hub"
+"Pro Community" = "https://www.skool.com/ai-marketing-hub-pro"
 
 [project.scripts]
 gauntlet-loop-brain = "gauntlet_loop_brain.cli:main"

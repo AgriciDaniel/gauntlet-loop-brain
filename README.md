@@ -5,7 +5,21 @@
 </p>
 
 <p align="center">
-  <code>AI agents</code> · <code>multi-agent systems</code> · <code>Obsidian</code> · <code>evaluation</code> · <code>agent governance</code>
+  <code>AI agents</code> · <code>multi-agent systems</code> · <code>Obsidian</code> · <code>evaluation</code> · <code>agent governance</code> · <code>human in the loop</code>
+</p>
+
+<p align="center">
+  <a href="https://www.skool.com/ai-marketing-hub">Free AI Marketing Hub</a>
+  ·
+  <a href="https://www.skool.com/ai-marketing-hub-pro">AI Marketing Hub Pro</a>
+  ·
+  <a href="RELEASE_NOTES.md">Release notes</a>
+  ·
+  <a href="docs/PUBLIC_READINESS_AUDIT.md">Public-readiness audit</a>
+  ·
+  <a href="LICENSE">Apache 2.0</a>
+  ·
+  <a href="SECURITY.md">Security</a>
 </p>
 
 Gauntlet Loop Brain is an evidence-gated Obsidian brain for designing, running, evaluating, and governing one-prompt multi-agent improvement loops.
@@ -52,10 +66,11 @@ plateaus, a regression appears, the budget ends, or a human intervenes.
 research, domain-adapter behavior, strict-vault, package-safety, and test gates
 pass. The repo is not market-ready because buyer demand, retention, and
 equal-budget advantage over simpler workflows remain unvalidated. Those market
-claims are separate from publication safety. An experimental public release is
-allowed only after the owner selects the license, clean Git commit provenance is
-available, the repository target and exact private-reporting URL agree, and the
-public artifact safety gates pass. Until then, every package is internal only.
+claims are separate from publication safety. The repository uses the Apache
+License 2.0. An experimental public release is allowed only after clean Git
+commit provenance is available, the repository target and exact private-reporting
+URL agree, and the public artifact safety gates pass. Until then, every package
+is internal only.
 
 It ships two artifacts:
 
@@ -170,6 +185,14 @@ Domain claims are release-blocked until `references/current-requirements.md`,
 `references/source-ledger.json` contain dated source material from trustworthy
 sources.
 
+## Community
+
+- [Free AI Marketing Hub](https://www.skool.com/ai-marketing-hub): learn, share, and explore the community.
+- [AI Marketing Hub Pro](https://www.skool.com/ai-marketing-hub-pro): deeper implementation support and member resources.
+
+Community membership does not change this brain's evidence, authority, safety,
+or release gates.
+
 ## Maturity Gates
 
 1. Scaffolded: product shell, vault, source pack, scripts, tests, and demo exist.
@@ -195,6 +218,10 @@ python scripts/package_release.py --version 0.1.0
 python scripts/package_release.py --version 0.1.0 --release-type experimental
 python scripts/package_release.py --version 1.0.0 --release-type market-ready
 ```
+
+Release tags use `vMAJOR.MINOR.PATCH`. Prerelease candidates use
+`vMAJOR.MINOR.PATCH-rc.N`. No Git tag is created until its exact clean commit,
+release manifest, checksums, license, and release notes have passed review.
 
 The default `scaffold` release and the optional `demo` release are always
 internal-only, even if publication prerequisites exist. `experimental` is the

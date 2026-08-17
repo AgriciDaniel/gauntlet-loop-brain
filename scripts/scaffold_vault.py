@@ -7,11 +7,15 @@ import re
 import shutil
 import stat
 import sys
-from datetime import date
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from gauntlet_loop_brain.clock import reference_date
+
+
 TEMPLATE = REPO / "assets" / "template-brain"
 
 
@@ -32,16 +36,17 @@ def main(argv: list[str] | None = None) -> int:
     if not TEMPLATE.exists():
         print(f"ERROR: template missing: {TEMPLATE}", file=sys.stderr)
         return 2
+    today = reference_date()
     if vault.exists():
         shutil.rmtree(vault)
     copy_template(TEMPLATE, vault, {
-        "{{date}}": date.today().isoformat(),
+        "{{date}}": today,
         "{{client_slug}}": slug,
         "{{client_name}}": args.client_name or slug,
         "{{owner}}": args.owner,
     })
     instantiate_runtime_notes(TEMPLATE, vault, {
-        "{{date}}": date.today().isoformat(),
+        "{{date}}": today,
         "{{client_slug}}": slug,
         "{{client_name}}": args.client_name or slug,
         "{{owner}}": args.owner,
@@ -53,7 +58,7 @@ def main(argv: list[str] | None = None) -> int:
             "client": slug,
             "client_name": args.client_name or slug,
             "owner": args.owner,
-            "created": date.today().isoformat(),
+            "created": today,
         }],
         "sources": [],
     }, indent=2) + "\n", encoding="utf-8")

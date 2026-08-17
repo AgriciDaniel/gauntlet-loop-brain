@@ -139,11 +139,11 @@ def audit_repo() -> dict[str, Any]:
     citation_ok, citation_score, citation_notes, citation_critical = check_citations()
     add_category(categories, "source_citation", citation_ok, citation_score, citation_notes)
     critical.extend(citation_critical)
-    add_category(categories, "demo_determinism", *check_paths(["examples/sample-vault/CODEX.md", "examples/sample-vault/.raw/.manifest.json", "examples/sample-vault/wiki/hot.md", "examples/sample-vault/wiki/reports/Weekly Report.md"]))
+    add_category(categories, "demo_determinism", *check_demo_determinism())
     add_category(categories, "tests", *check_paths(["tests/test_pipeline.py", ".github/workflows/ci.yml"]))
     add_category(categories, "packaging", *check_packaging())
     add_category(categories, "installability", *check_paths(["install.sh", "uninstall.sh", "pyproject.toml"]))
-    add_category(categories, "docs", *check_paths(["README.md", "docs/OPERATOR_KIT.md", "docs/PRODUCT_BOUNDARIES.md", "RELEASE_CHECKLIST.md"]))
+    add_category(categories, "docs", *check_paths(["README.md", "docs/OPERATOR_KIT.md", "docs/PRODUCT_BOUNDARIES.md", "docs/PUBLIC_READINESS_AUDIT.md", "docs/repository-metadata.md", "RELEASE_CHECKLIST.md"]))
     add_category(categories, "obsidian_vault_quality", *check_paths(["assets/template-brain/CODEX.md", "assets/template-brain/.raw/.manifest.json", "assets/template-brain/wiki/hot.md", "assets/template-brain/wiki/index.md", "assets/template-brain/wiki/overview.md", "assets/template-brain/wiki/log.md", "assets/template-brain/wiki/meta/dashboard.md", "assets/template-brain/wiki/canvases/Onboarding Canvas.canvas"]))
 
     for name, category in categories.items():
@@ -375,6 +375,36 @@ def check_packaging() -> tuple[bool, int, list[str]]:
     if not (REPO / ".git").exists():
         notes.append("release provenance is not bound to a Git repository")
     return not notes, 100 - 20 * len(notes), notes
+
+
+def check_demo_determinism() -> tuple[bool, int, list[str]]:
+    required = [
+        "examples/sample-vault/CODEX.md",
+        "examples/sample-vault/.raw/.manifest.json",
+        "examples/sample-vault/wiki/hot.md",
+        "examples/sample-vault/wiki/reports/Weekly Report.md",
+        "tests/fixtures/sample-vault.sha256",
+    ]
+    ok, score, notes = check_paths(required)
+    if not ok:
+        return ok, score, notes
+
+    repo_path = str(REPO)
+    if repo_path not in sys.path:
+        sys.path.insert(0, repo_path)
+    try:
+        from gauntlet_loop_brain.integrity import hash_tree
+    except ImportError as exc:
+        return False, 0, [f"sample-vault integrity helper cannot be imported: {exc}"]
+
+    fields = read(REPO / "tests" / "fixtures" / "sample-vault.sha256").strip().split()
+    fixture = fields[0] if fields else ""
+    if not re.fullmatch(r"[0-9a-f]{64}", fixture):
+        return False, 40, ["sample-vault hash fixture is invalid"]
+    actual = hash_tree(REPO / "examples" / "sample-vault")
+    if actual != fixture:
+        return False, 40, [f"sample-vault tree hash drift: expected {fixture}, got {actual}"]
+    return True, 100, []
 
 
 def check_paths(paths: list[str]) -> tuple[bool, int, list[str]]:

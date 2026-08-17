@@ -389,7 +389,28 @@ def publication_blockers() -> list[str]:
             blockers.append("private vulnerability-reporting URL cannot be verified against Git remote origin")
         elif configured != expected:
             blockers.append("private vulnerability-reporting URL does not match Git remote origin")
+    governance, governance_errors = load_publication_governance()
+    blockers.extend(governance_errors)
+    if not governance_errors and governance.get("private_vulnerability_reporting_enabled") is not True:
+        blockers.append("private vulnerability reporting has not been verified enabled")
     return blockers
+
+
+def load_publication_governance() -> tuple[dict[str, object], list[str]]:
+    path = REPO / "references" / "publication-readiness.json"
+    if not path.is_file():
+        return {}, ["publication governance attestation is missing"]
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:
+        return {}, ["publication governance attestation is invalid JSON"]
+    if not isinstance(data, dict):
+        return {}, ["publication governance attestation must be a JSON object"]
+    if data.get("schema") != "gauntlet-loop-publication-readiness.v1":
+        return {}, ["publication governance attestation has an unsupported schema"]
+    if data.get("repository") != "AgriciDaniel/gauntlet-loop-brain":
+        return {}, ["publication governance attestation names the wrong repository"]
+    return data, []
 
 
 def git_remote_origin() -> str | None:

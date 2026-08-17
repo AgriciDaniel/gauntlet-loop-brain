@@ -1,18 +1,30 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 
+import os
 import shutil
 import subprocess
 import sys
 from pathlib import Path
 
-
 REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from gauntlet_loop_brain.clock import DATE_OVERRIDE_ENV
+
+
 PY = sys.executable
+DEMO_REFERENCE_DATE = "2026-08-17"
 
 
 def run(args: list[str]) -> None:
-    subprocess.run([PY, *args], cwd=REPO, check=True)
+    subprocess.run(
+        [PY, *args],
+        cwd=REPO,
+        env={**os.environ, DATE_OVERRIDE_ENV: DEMO_REFERENCE_DATE},
+        check=True,
+    )
 
 
 def main() -> int:

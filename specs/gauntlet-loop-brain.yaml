@@ -5,8 +5,8 @@ title: "Gauntlet Loop Brain"
 domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 buyer: "AI operators, brain authors, product builders, and AI Marketing Hub maintainers who need ambitious autonomous work without unbounded cost, self-grading, or unverifiable quality claims."
 owner: "Daniel Agrici"
-repo_url: ""
-license_name: "Custom license"
+repo_url: "https://github.com/AgriciDaniel/gauntlet-loop-brain"
+license_name: "Apache-2.0"
 research_refresh_cadence: "monthly for model and harness behavior; quarterly for research literature; before every integration or release for platform controls, pricing, and limits"
 
 workflows:

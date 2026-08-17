@@ -6,6 +6,8 @@
 - [ ] `SKILL.md` maps commands accurately.
 - [ ] License and distribution stance is explicit.
 - [ ] Third-party notices are current.
+- [ ] README and support surfaces link to the verified Free and Pro AI Marketing Hub pages.
+- [ ] Release notes match the exact version and commit being tagged.
 
 ## Research
 
@@ -32,6 +34,7 @@
 - [ ] `python -m compileall scripts gauntlet_loop_brain tests`
 - [ ] `python tests/test_pipeline.py`
 - [ ] `python scripts/build_demo_vault.py`
+- [ ] `python scripts/hash_sample_vault.py --check`
 - [ ] `python scripts/package_release.py --version 0.1.0`
 - [ ] The default scaffold manifest says `publication_ready: false` and
       `distribution_status: internal-review-only`.
@@ -41,8 +44,12 @@
       `market_ready: false`, and all three market-validation fields are false.
 - [ ] The final owner-selected license is present, the worktree is clean, and
       the manifest records the exact Git commit.
+- [ ] The reviewed tag uses `vMAJOR.MINOR.PATCH` or
+      `vMAJOR.MINOR.PATCH-rc.N` and points to that exact commit.
 - [ ] The configured Git remote identifies the public repository target and the
       private vulnerability-reporting URL in `SECURITY.md` exactly matches it.
+- [ ] `references/publication-readiness.json` records a current verified GitHub
+      governance state and private vulnerability reporting is enabled.
 - [ ] No secrets, private client data, or local absolute paths in artifacts.
 - [ ] Market-ready release is blocked unless audit score is at least 90 with no critical failures.
 - [ ] No public surface claims validated buyer demand, validated retention, or

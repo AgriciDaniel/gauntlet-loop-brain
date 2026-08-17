@@ -5,12 +5,16 @@ import argparse
 import json
 import re
 import sys
-from datetime import date
 from pathlib import Path
 from typing import Any
 
-
 REPO = Path(__file__).resolve().parent.parent
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from gauntlet_loop_brain.clock import reference_date
+
+
 DOMAIN = "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 DOMAIN_SLUG = "designing-running-evaluating-and-governing-one-prompt-multi-agen"
 CONFIDENCE_LEVELS = {"evidence-based", "practitioner", "contested", "folklore"}
@@ -58,8 +62,8 @@ type: "deliverable"
 title: "Health Scorecard"
 domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 status: "draft"
-created: "{date.today().isoformat()}"
-updated: "{date.today().isoformat()}"
+created: "{reference_date()}"
+updated: "{reference_date()}"
 tags:
   - "#domain/designing-running-evaluating-and-governing-one-prompt-multi-agen"
   - "#type/deliverable"
@@ -93,8 +97,8 @@ type: "deliverable"
 title: "Action Roadmap"
 domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 status: "draft"
-created: "{date.today().isoformat()}"
-updated: "{date.today().isoformat()}"
+created: "{reference_date()}"
+updated: "{reference_date()}"
 tags:
   - "#domain/designing-running-evaluating-and-governing-one-prompt-multi-agen"
   - "#type/deliverable"
@@ -127,8 +131,8 @@ type: "report"
 title: "Weekly Report"
 domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
 status: "draft"
-created: "{date.today().isoformat()}"
-updated: "{date.today().isoformat()}"
+created: "{reference_date()}"
+updated: "{reference_date()}"
 tags:
   - "#domain/designing-running-evaluating-and-governing-one-prompt-multi-agen"
   - "#type/report"
@@ -274,8 +278,8 @@ def canon_source_index(rows: list[str]) -> str:
     return f"""---
 type: "reference"
 title: "Canon Reference Layer"
-created: "{date.today().isoformat()}"
-updated: "{date.today().isoformat()}"
+created: "{reference_date()}"
+updated: "{reference_date()}"
 status: "active"
 ---
 
@@ -484,8 +488,8 @@ def note_frontmatter(
         f"title: {yaml_scalar(title)}",
         f"domain: {yaml_scalar(DOMAIN)}",
         f"status: {yaml_scalar(status)}",
-        f"created: {yaml_scalar(date.today().isoformat())}",
-        f"updated: {yaml_scalar(date.today().isoformat())}",
+        f"created: {yaml_scalar(reference_date())}",
+        f"updated: {yaml_scalar(reference_date())}",
         yaml_list("tags", tags),
         f"confidence: {yaml_scalar(level)}",
         yaml_list("related", links),
@@ -544,7 +548,7 @@ def write(path: Path, text: str) -> None:
 def append_log(vault: Path, message: str) -> None:
     log = vault / "wiki" / "log.md"
     if log.exists():
-        log.write_text(log.read_text(encoding="utf-8").rstrip() + f"\n- {date.today().isoformat()} - {message}\n", encoding="utf-8")
+        log.write_text(log.read_text(encoding="utf-8").rstrip() + f"\n- {reference_date()} - {message}\n", encoding="utf-8")
 
 
 if __name__ == "__main__":

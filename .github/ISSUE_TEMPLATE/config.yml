@@ -1,1 +1,11 @@
 blank_issues_enabled: false
+contact_links:
+  - name: Free AI Marketing Hub
+    url: https://www.skool.com/ai-marketing-hub
+    about: Ask general questions and learn with the community.
+  - name: AI Marketing Hub Pro
+    url: https://www.skool.com/ai-marketing-hub-pro
+    about: Get deeper implementation support and member resources.
+  - name: Private security report
+    url: https://github.com/AgriciDaniel/gauntlet-loop-brain/security/advisories/new
+    about: Report vulnerabilities privately. Never include secrets in a public issue.
