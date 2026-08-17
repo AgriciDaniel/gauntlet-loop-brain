@@ -1,0 +1,356 @@
+{
+  "version": 1,
+  "status": "researched-baseline",
+  "domain": "designing, running, evaluating, and governing one-prompt multi-agent improvement loops",
+  "retrieval_date": "2026-08-17",
+  "refresh_cadence": "monthly for model and harness behavior; quarterly for research literature; before every integration or release for platform controls, pricing, and limits",
+  "confidence_policy": {
+    "evidence-based": "Controlled research or authoritative primary data, scoped to the population and tasks actually studied.",
+    "practitioner": "First-party field report, vendor engineering guidance, repository evidence, or operational judgment. Useful, but not a controlled causal result.",
+    "contested": "Mixed, contradicted, stale, or otherwise insufficient evidence. It must be presented with its caveat.",
+    "folklore": "Popular claim without credible support. It is recorded only to prevent accidental promotion to fact."
+  },
+  "rules": {
+    "researched_requires": [
+      "at least two captured sources for fast-moving or high-stakes domains",
+      "at least one official or primary source for lower-risk domains",
+      "retrieved dates, refresh_due dates, source_type, confidence, claim coverage, and caveats",
+      "first-party practitioner evidence must not be described as controlled research",
+      "no placeholder or example URLs"
+    ],
+    "accepted_primary_types": [
+      "official",
+      "primary",
+      "vendor",
+      "regulator",
+      "government",
+      "standards",
+      "standards-body",
+      "authority",
+      "api-docs"
+    ]
+  },
+  "sources": [
+    {
+      "id": "S001",
+      "title": "How to Run a Gauntlet Loop",
+      "publisher": "Something Big Is Happening, Matt Shumer",
+      "url": "https://somethingbig.ai/gauntlet-loop",
+      "source_type": "primary",
+      "evidence_class": "first-party-practitioner",
+      "published": "2026-07-27",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "The named method uses a lead agent, a concrete inspectable bar, decomposed pieces, separate fresh-context critics, direct inspection of the artifact, and repeated refinement.",
+        "The author explicitly says the game did not become better than Call of Duty and that the human stopped the run.",
+        "The author describes one initiating prompt followed by many hours and many subagents, not one model completion.",
+        "The author recommends a whole-artifact smoothing pass after waves of separate changes."
+      ],
+      "caveats": [
+        "This is the method author's own explanatory and promotional account, not a controlled comparison.",
+        "Its generalization claims are hypotheses until tested per domain.",
+        "Current product and model recommendations can drift quickly."
+      ]
+    },
+    {
+      "id": "S002",
+      "title": "Claude of Duty README and honest assessment",
+      "publisher": "Matt Shumer, GitHub",
+      "url": "https://github.com/mshumer/Claude-of-Duty/blob/main/README.md",
+      "source_type": "primary",
+      "evidence_class": "first-party-artifact-and-postmortem",
+      "published": "2026-07-25",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "The repository reports roughly 55,000 lines across 11 subsystems and describes its capture, baseline, image-diff, profiling, and playtest tools.",
+        "The stated goal was to match a modern Call of Duty, and the repository says it did not.",
+        "Critic scores were 3.59, 4.14, 4.05, and 5.05 out of 10, so progress was non-monotonic.",
+        "Every critic in every blind comparison round selected the real Call of Duty frame.",
+        "For coupled lighting concerns, three six-agent directory-owned rounds left defects at 60, 47, and 66, while a sequential single-owner pass cut defects from 66 to 26 and moved the score by 1.00."
+      ],
+      "caveats": [
+        "The measurements and critic protocol are reported by the builder and were not independently audited for this source pack.",
+        "The process finding is strong project evidence, but one project does not establish a universal causal rule.",
+        "Repository content can change, so release integrations should pin a commit or capture a hash."
+      ]
+    },
+    {
+      "id": "S003",
+      "title": "Claude of Duty original prompt",
+      "publisher": "Matt Shumer, GitHub",
+      "url": "https://github.com/mshumer/Claude-of-Duty/blob/main/prompt.md",
+      "source_type": "primary",
+      "evidence_class": "first-party-artifact",
+      "published": "2026-07-25",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "The original prompt asks for a concrete Call of Duty comparison, subagent fan-out, a separate harsh visual critic, blind side-by-side comparison, and repeated looping.",
+        "The original prompt contains aspirational quality language but does not itself prove that the output met that quality bar."
+      ],
+      "caveats": [
+        "A prompt is evidence of instructions, not evidence of resulting quality, cost, causality, or reproducibility.",
+        "The prompt should be read together with the repository's contrary honest assessment."
+      ]
+    },
+    {
+      "id": "S004",
+      "title": "Building effective agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/building-effective-agents",
+      "source_type": "vendor",
+      "evidence_class": "vendor-engineering-guidance",
+      "published": "2024-12-19",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "Evaluator-optimizer workflows fit tasks with clear evaluation criteria and measurable value from iterative refinement.",
+        "Orchestrator-worker workflows dynamically decompose tasks and synthesize worker results.",
+        "Parallel sectioning is for independent subtasks, while agentic systems trade latency and cost for performance.",
+        "Ground truth from the environment and explicit stopping conditions help maintain control."
+      ],
+      "caveats": [
+        "This is vendor guidance based on Anthropic experience, not a controlled Gauntlet Loop benchmark.",
+        "The page itself warns that much of the tooling landscape described in 2024 has changed."
+      ]
+    },
+    {
+      "id": "S005",
+      "title": "Effective harnesses for long-running agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "source_type": "vendor",
+      "evidence_class": "vendor-engineering-experiment",
+      "published": "2025-11-26",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "Long-running work needs explicit state artifacts and clean handoffs across context windows.",
+        "Compaction alone was insufficient in Anthropic's application-building experiments.",
+        "Attempting too much at once and later declaring incomplete work done were observed failure modes."
+      ],
+      "caveats": [
+        "The experiments concern Anthropic's harness and application-development setup, not the Gauntlet prompt in isolation.",
+        "Model and harness behavior is fast moving."
+      ]
+    },
+    {
+      "id": "S006",
+      "title": "Demystifying evals for AI agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+      "source_type": "vendor",
+      "evidence_class": "vendor-engineering-guidance",
+      "published": "2026-01-09",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "Agent evaluation should distinguish transcripts from actual end-state outcomes.",
+        "Code-based, model-based, and human graders have different strengths and should be selected by task.",
+        "Model graders require calibration with human graders, and regression suites are needed to detect backsliding.",
+        "Multiple trials are needed because agent behavior varies between runs."
+      ],
+      "caveats": [
+        "This is vendor guidance and includes illustrative examples, not a universal benchmark result.",
+        "Evaluation design must be adapted to the artifact and risk."
+      ]
+    },
+    {
+      "id": "S007",
+      "title": "How we built our multi-agent research system",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+      "source_type": "vendor",
+      "evidence_class": "vendor-internal-evaluation-and-field-report",
+      "published": "2025-06-13",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "Anthropic found multi-agent research useful for breadth-first queries with independent directions.",
+        "Anthropic reports that multi-agent systems used about 15 times the tokens of chats in its data.",
+        "Anthropic says domains with shared context or many dependencies are not a good fit for current multi-agent systems.",
+        "Durable execution, retry logic, checkpoints, tracing, clear subagent boundaries, and explicit guardrails were important in production."
+      ],
+      "caveats": [
+        "The 90.2 percent result is an internal vendor evaluation on a research task and does not establish gains for coupled code or creative work.",
+        "The token multiples describe Anthropic's system and should not be used as universal cost forecasts."
+      ]
+    },
+    {
+      "id": "S008",
+      "title": "Self-Refine: Iterative Refinement with Self-Feedback",
+      "publisher": "Madaan et al., arXiv",
+      "url": "https://arxiv.org/abs/2303.17651",
+      "source_type": "primary",
+      "evidence_class": "controlled-research",
+      "published": "2023-03-30",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "Across seven evaluated tasks, iterative same-model feedback and refinement improved average task performance by about 20 percentage points over one-step generation in the reported setup.",
+        "The study capped runs at four feedback-refine iterations and used task-specific stop conditions.",
+        "Specific, actionable feedback mattered, while external oracle feedback produced larger gains in one math setting.",
+        "Refinement could ignore feedback or introduce new problems, so improvement was not guaranteed per trial."
+      ],
+      "caveats": [
+        "This study tests Self-Refine, not separate builder and critic agents or an open-ended Gauntlet Loop.",
+        "Results are task, model, prompt, and metric dependent and should not be generalized to current models without re-evaluation."
+      ]
+    },
+    {
+      "id": "S009",
+      "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+      "publisher": "Shinn et al., arXiv and NeurIPS 2023",
+      "url": "https://arxiv.org/abs/2303.11366",
+      "source_type": "primary",
+      "evidence_class": "controlled-research",
+      "published": "2023-03-20",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "Reflexion stores verbal reflections in episodic memory and uses them to guide later trials.",
+        "The paper reports improvements over baselines across sequential decision-making, coding, and language reasoning tasks.",
+        "Feedback can be external or internally simulated, but the quality and grounding of the signal affect what the memory teaches."
+      ],
+      "caveats": [
+        "Reflexion is not a direct test of blind builder-critic separation or of the Gauntlet prompt.",
+        "Reported benchmark gains do not establish production reliability or unlimited-loop safety."
+      ]
+    },
+    {
+      "id": "S010",
+      "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+      "publisher": "Zheng et al., arXiv",
+      "url": "https://arxiv.org/abs/2306.05685",
+      "source_type": "primary",
+      "evidence_class": "controlled-research",
+      "published": "2023-06-09",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "LLM judges can perform pairwise, single-answer, and reference-guided grading.",
+        "The study found position, verbosity, self-enhancement, and reasoning limitations in LLM judges.",
+        "Position swaps, stronger references, complete context, and human agreement checks can mitigate some judge errors.",
+        "No single benchmark determines model quality, so comprehensive evaluation is needed."
+      ],
+      "caveats": [
+        "The study evaluates chat assistants and models available in 2023, not visual artifacts or current agent systems.",
+        "High aggregate agreement does not guarantee correctness on an individual judgment."
+      ]
+    },
+    {
+      "id": "S011",
+      "title": "SELF-[IN]CORRECT: LLMs Struggle with Discriminating Self-Generated Responses",
+      "publisher": "Jiang et al., arXiv and AAAI",
+      "url": "https://arxiv.org/abs/2404.04298",
+      "source_type": "primary",
+      "evidence_class": "controlled-research",
+      "published": "2024-04-04",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "Across the studied models and tasks, models were not reliably better at discriminating among their generated alternatives than at generating initial responses.",
+        "Self-refinement cannot be assumed to improve results solely because the same model judges its own candidates."
+      ],
+      "caveats": [
+        "This paper does not prove that a fresh instance or different model is automatically unbiased or correct.",
+        "The findings are scoped to the studied tasks, models, and evaluation framework."
+      ]
+    },
+    {
+      "id": "S012",
+      "title": "Self-Preference Bias in LLM-as-a-Judge",
+      "publisher": "Wataoka, Takahashi, and Ri, arXiv",
+      "url": "https://arxiv.org/abs/2410.21819",
+      "source_type": "primary",
+      "evidence_class": "controlled-research",
+      "published": "2024-10-29",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "The study measured significant self-preference bias in GPT-4 under its experimental setup.",
+        "Lower-perplexity, more familiar text received higher LLM evaluations than human evaluations, even beyond literal self-generation."
+      ],
+      "caveats": [
+        "Fresh context reduces builder-history contamination but does not by itself remove model-family or familiarity bias.",
+        "The study does not validate blind A/B as sufficient for trustworthy acceptance."
+      ]
+    },
+    {
+      "id": "S013",
+      "title": "Specification gaming: the flip side of AI ingenuity",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/blog/specification-gaming-the-flip-side-of-ai-ingenuity/",
+      "source_type": "official",
+      "evidence_class": "research-synthesis-and-primary-examples",
+      "published": "2020-04-21",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "An agent can satisfy a literal objective while failing the intended outcome.",
+        "Proxy metrics, incomplete specifications, evaluator blind spots, simulator flaws, and reward-channel manipulation can all create gaming opportunities.",
+        "More capable optimization can make specification failures more consequential."
+      ],
+      "caveats": [
+        "Most examples concern reinforcement learning, but the objective-misspecification mechanism is relevant by analogy to iterative agent graders.",
+        "The source does not prescribe a complete governance system for generative-agent loops."
+      ]
+    },
+    {
+      "id": "S014",
+      "title": "Our framework for developing safe and trustworthy agents",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/our-framework-for-developing-safe-and-trustworthy-agents",
+      "source_type": "vendor",
+      "evidence_class": "vendor-policy-and-product-practice",
+      "published": "2025-08-04",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-09-17",
+      "confidence": "practitioner",
+      "claims": [
+        "Humans should retain control over how agent goals are pursued, especially before high-stakes decisions.",
+        "Anthropic describes read-only defaults, explicit approval for mutations, stop controls, transparency, and layered defenses as parts of trustworthy agent operation."
+      ],
+      "caveats": [
+        "This is Anthropic's own policy and product framing, not an independent safety evaluation.",
+        "Exact permission behavior varies by product, configuration, and release."
+      ]
+    },
+    {
+      "id": "S015",
+      "title": "Towards a science of scaling agent systems: When and why agent systems work",
+      "publisher": "Google Research",
+      "url": "https://research.google/blog/towards-a-science-of-scaling-agent-systems-when-and-why-agent-systems-work/",
+      "source_type": "official",
+      "evidence_class": "controlled-research-summary",
+      "published": "2026-01-28",
+      "retrieved": "2026-08-17",
+      "refresh_due": "2026-11-17",
+      "confidence": "evidence-based",
+      "claims": [
+        "Google Research reports a controlled evaluation of 180 agent configurations across five architectures, three model families, and four benchmarks.",
+        "Centralized coordination improved the parallelizable Finance-Agent task by 80.9 percent over a single agent, while every tested multi-agent variant degraded sequential PlanCraft performance by 39 to 70 percent.",
+        "Independent multi-agent systems amplified errors by 17.2 times in the reported evaluation, compared with 4.4 times for centralized systems."
+      ],
+      "caveats": [
+        "These are results from the reported tasks, models, and harnesses, not a guarantee for every agent workflow.",
+        "The official article summarizes a linked paper. Equal-budget advantage for this Gauntlet Brain remains unvalidated."
+      ]
+    }
+  ]
+}

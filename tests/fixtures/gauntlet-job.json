@@ -1,0 +1,76 @@
+{
+  "schema": "gauntlet.job.v1",
+  "goal": "Build an evidence-gated Gauntlet Loop Brain that is useful as an opt-in AI Marketing Hub quality lane.",
+  "audience": "AI Marketing Hub brain maintainers",
+  "non_goals": [
+    "Do not publish, deploy, or install the brain."
+  ],
+  "constraints": [
+    "Preserve the distinction between one initiating prompt and many agent iterations.",
+    "Report the original project's failed comparison honestly."
+  ],
+  "protected_paths": [
+    "Gauntlet Loop Research.md"
+  ],
+  "reference": {
+    "name": "Brainstein researched brain contract",
+    "location": "local Brainstein v3 rubric and validated brain exemplars",
+    "rationale": "It is inspectable and defines the required vault, source, skill, and audit surfaces.",
+    "observable_dimensions": [
+      "source provenance",
+      "vault navigation",
+      "agent operating contract",
+      "validation results"
+    ]
+  },
+  "authority": {
+    "allowed_actions": [
+      "Read research sources",
+      "Create reversible files inside this workspace",
+      "Run local validation and tests"
+    ],
+    "disallowed_actions": [
+      "Commit or push",
+      "Publish or deploy",
+      "Install system-wide",
+      "Use paid live APIs"
+    ]
+  },
+  "budget": {
+    "max_iterations": 5,
+    "max_parallel_agents": 3,
+    "max_minutes": 240,
+    "max_tokens": 500000,
+    "max_retries": 1,
+    "max_cost_usd": 0
+  },
+  "gates": [
+    {
+      "id": "source-pack",
+      "kind": "evidence",
+      "authority": "blocking",
+      "criterion": "Material claims cite a supplied note and primary source.",
+      "protected": true
+    },
+    {
+      "id": "brainstein-validation",
+      "kind": "deterministic",
+      "authority": "blocking",
+      "criterion": "Brainstein validation and repository tests pass.",
+      "protected": true
+    },
+    {
+      "id": "integration-review",
+      "kind": "judge",
+      "authority": "blocking",
+      "criterion": "The skill, vault, sources, and job schema form one coherent operating system.",
+      "protected": true
+    }
+  ],
+  "stop_policy": {
+    "plateau_window": 2,
+    "minimum_improvement_delta": 0.05,
+    "regression_policy": "revert_or_escalate",
+    "human_can_stop": true
+  }
+}

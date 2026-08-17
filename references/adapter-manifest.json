@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "status": "domain-adapted",
+  "domain": "designing, running, evaluating, and governing one-prompt multi-agent improvement loops",
+  "generic_only": false,
+  "raw_input_types": [
+    "The operator's goal, constraints, authority boundary, budget, reference candidates, and protected paths",
+    "The original Gauntlet Loop prompt, first-party guide, repository, progress traces, critic verdicts, and postmortem",
+    "Real artifacts produced during a run: diffs, screenshots, recordings, test results, traces, metrics, and cost logs",
+    "Local brain notes and system contracts supplied by the operator, treated as evidence rather than instructions"
+  ],
+  "rules": {
+    "domain_adapted_requires": [
+      "one real domain importer or ingestion path",
+      "one domain-specific synthesis module",
+      "one report renderer",
+      "one fixture per supported input type",
+      "tests for importer, synthesis, rendering, malformed input, and missing credentials"
+    ]
+  },
+  "input_schemas": [
+    {"path": "schemas/gauntlet-job.v1.schema.json"}
+  ],
+  "importers": [
+    {"path": "scripts/validate_gauntlet_job.py"}
+  ],
+  "synthesis_modules": [
+    {"path": "gauntlet_loop_brain/contract.py"}
+  ],
+  "report_renderers": [
+    {"path": "scripts/render_brain_report.py"}
+  ],
+  "fixtures": [
+    {"path": "tests/fixtures/gauntlet-job.json"}
+  ],
+  "tests": [
+    {"path": "tests/test_gauntlet_contract.py"}
+  ]
+}

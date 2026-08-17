@@ -1,0 +1,18 @@
+{
+  "scaffold_history": [
+    {
+      "client": "sample-vault",
+      "client_name": "Sample Client",
+      "owner": "Daniel Agrici",
+      "created": "2026-08-17"
+    }
+  ],
+  "sources": [
+    {
+      "path": ".raw/sources/sample-source.md",
+      "sha256": "274dc8514f30e57446ee5fb03bb37fa61b2f9ca79d424c7ebe3d4a0f83cc3c39",
+      "retrieved": "2026-08-17",
+      "source_type": "fixture"
+    }
+  ]
+}

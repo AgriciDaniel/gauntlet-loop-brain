@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.invalid/gauntlet-job.v1.schema.json",
+  "title": "Gauntlet Loop Job Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "goal",
+    "reference",
+    "authority",
+    "budget",
+    "gates",
+    "stop_policy"
+  ],
+  "properties": {
+    "schema": {"const": "gauntlet.job.v1"},
+    "goal": {"type": "string", "minLength": 1},
+    "audience": {"type": "string"},
+    "non_goals": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "protected_paths": {"type": "array", "items": {"type": "string"}},
+    "reference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "location", "rationale", "observable_dimensions"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "location": {"type": "string", "minLength": 1},
+        "rationale": {"type": "string", "minLength": 1},
+        "observable_dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_actions", "disallowed_actions"],
+      "properties": {
+        "allowed_actions": {"type": "array", "items": {"type": "string"}},
+        "disallowed_actions": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_iterations", "max_parallel_agents", "max_minutes", "max_tokens", "max_cost_usd", "max_retries"],
+      "properties": {
+        "max_iterations": {"type": "integer", "minimum": 1},
+        "max_parallel_agents": {"type": "integer", "minimum": 1},
+        "max_minutes": {"type": "integer", "minimum": 1},
+        "max_tokens": {"type": "integer", "minimum": 1},
+        "max_cost_usd": {"type": "number", "minimum": 0},
+        "max_retries": {"type": "integer", "minimum": 0}
+      }
+    },
+    "gates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "kind", "authority", "criterion", "protected"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "kind": {
+            "enum": ["deterministic", "evidence", "judge", "human"]
+          },
+          "authority": {"enum": ["blocking", "advisory"]},
+          "criterion": {"type": "string", "minLength": 1},
+          "protected": {"const": true}
+        }
+      }
+    },
+    "stop_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "plateau_window",
+        "minimum_improvement_delta",
+        "regression_policy",
+        "human_can_stop"
+      ],
+      "properties": {
+        "plateau_window": {"type": "integer", "minimum": 1},
+        "minimum_improvement_delta": {"type": "number", "minimum": 0},
+        "regression_policy": {"enum": ["revert", "escalate", "revert_or_escalate"]},
+        "human_can_stop": {"const": true}
+      }
+    }
+  }
+}

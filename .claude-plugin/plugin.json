@@ -1,0 +1,34 @@
+{
+  "name": "gauntlet-loop-brain",
+  "version": "0.1.0",
+  "description": "Gauntlet Loop Brain Obsidian brain for designing, running, evaluating, and governing one-prompt multi-agent improvement loops.",
+  "author": {
+    "name": "Daniel Agrici",
+    "url": "https://github.com/AgriciDaniel"
+  },
+  "homepage": "https://github.com/AgriciDaniel/gauntlet-loop-brain",
+  "repository": "https://github.com/AgriciDaniel/gauntlet-loop-brain",
+  "license": "Custom license",
+  "keywords": [
+    "gauntlet-loop-brain",
+    "obsidian",
+    "brain",
+    "gauntlet-loop"
+  ],
+  "skills": [
+    "./SKILL.md"
+  ],
+  "allowed-tools": [
+    "Read",
+    "Grep",
+    "Glob",
+    "Bash(python scripts/validate_gauntlet_job.py:*)",
+    "Bash(python scripts/lint_vault.py:*)",
+    "Bash(python scripts/audit_brain.py:*)"
+  ],
+  "permissions": {
+    "filesystem": "read-only by default; reversible writes inside the declared workspace only when the user asks to build or fix",
+    "network": "research access only; no external mutation",
+    "credentials": "never read from or persist to brain artifacts"
+  }
+}

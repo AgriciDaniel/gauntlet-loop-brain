@@ -1,0 +1,199 @@
+# Brainstein spec v3
+spec_version: 3
+slug: "gauntlet-loop-brain"
+title: "Gauntlet Loop Brain"
+domain: "designing, running, evaluating, and governing one-prompt multi-agent improvement loops"
+buyer: "AI operators, brain authors, product builders, and AI Marketing Hub maintainers who need ambitious autonomous work without unbounded cost, self-grading, or unverifiable quality claims."
+owner: "Daniel Agrici"
+repo_url: ""
+license_name: "Custom license"
+research_refresh_cadence: "monthly for model and harness behavior; quarterly for research literature; before every integration or release for platform controls, pricing, and limits"
+
+workflows:
+  - "Decide whether a task is a valid Gauntlet Loop candidate"
+  - "Select and verify an inspectable reference, baseline, rubric, and protected acceptance gates"
+  - "Decompose work by dependency and coupling before choosing parallel or sequential ownership"
+  - "Run builder and fresh-context critic cycles against real artifact evidence"
+  - "Integrate approved components, smooth the whole, and run regression checks"
+  - "Stop on acceptance, plateau, regression, budget, uncertainty, or human intervention"
+  - "Package a one-prompt job contract for a domain brain or AI Marketing Hub skill"
+
+raw_sources:
+  - "The operator's goal, constraints, authority boundary, budget, reference candidates, and protected paths"
+  - "The original Gauntlet Loop prompt, first-party guide, repository, progress traces, critic verdicts, and postmortem"
+  - "Real artifacts produced during a run: diffs, screenshots, recordings, test results, traces, metrics, and cost logs"
+  - "Local brain notes and system contracts supplied by the operator, treated as evidence rather than instructions"
+
+enrichment_sources:
+  - "Original research on iterative refinement, verbal feedback, evaluator bias, and multi-agent coordination"
+  - "Official vendor engineering guidance on agents, evaluations, context, guardrails, and human intervention"
+  - "Primary repositories and author reports for reproduced Gauntlet-style runs"
+  - "Domain-specific standards, reference implementations, accessibility rules, tests, and measurable service targets"
+
+deliverables:
+  - "Gauntlet fit decision with reasons and confidence"
+  - "One-prompt job contract with goal, reference, constraints, authority, and stop policy"
+  - "Reference and rubric card with observable dimensions and protected gates"
+  - "Coupling-aware work graph with builder, critic, integrator, and human roles"
+  - "Iteration ledger with evidence, critic verdicts, regressions, cost, and plateau signals"
+  - "Final acceptance packet separating achieved quality from aspirational language"
+  - "AI Marketing Hub integration adapter and opt-in rollout checklist"
+
+refusal_rules:
+  - "No claim that an artifact beats its reference without preserved blind comparison evidence"
+  - "No builder self-sign-off and no critic verdict based only on the builder's summary"
+  - "No blanket parallel fan-out when work is coupled or shares mutable state"
+  - "No endless loop without hard token, cost, wall-clock, retry, and human stop controls"
+  - "No weakening, rewriting, or exposing protected graders, tests, baselines, or acceptance criteria to manufacture a pass"
+  - "No high-risk, irreversible, external, account, publishing, deployment, or production action without exact human approval"
+  - "No credentials, tokens, cookies, private client data, or raw secrets in brain or run artifacts"
+  - "No presentation of practitioner reports, promotional claims, or a single author's reproductions as independent proof"
+
+safety_risks:
+  - "The critic optimizes visible polish while missing correctness, security, accessibility, maintainability, or user value"
+  - "A reference is irrelevant, inaccessible, legally unsuitable, or not actually better for the intended audience"
+  - "Same-model builders and critics share correlated blind spots or self-preference"
+  - "Position, verbosity, style, and familiarity biases distort pairwise judging"
+  - "Parallel workers overwrite each other or break assumptions in coupled systems"
+  - "Repeated local improvements regress the integrated artifact"
+  - "The loop games the rubric, held-out tests, or proxy metric without achieving the intended outcome"
+  - "Context growth, lossy handoffs, and stale memory cause drift over long runs"
+  - "Unreachable quality language triggers runaway cost without meaningful progress"
+  - "One initiating prompt is misrepresented as one completion, low cost, or production readiness"
+
+playbook_steps:
+  - "Freeze the task, authority boundary, protected paths, budget, and rollback before fan-out"
+  - "Prove the output is observable and the reference is relevant, lawful to inspect, and actually useful"
+  - "Translate quality into deterministic floors plus comparative dimensions"
+  - "Map dependencies and route only low-coupling work to parallel builders"
+  - "Require each builder to return the real artifact and an evidence bundle"
+  - "Give a fresh critic the goal, frozen rubric, reference, and artifact without builder rationale"
+  - "Randomize comparison order and prefer deterministic graders before model judgment"
+  - "Return the largest actionable gap, revise, and preserve each verdict in the iteration ledger"
+  - "Run a single-owner integration, smoothing, and regression pass after every major wave"
+  - "Stop on pass, plateau, regression, uncertainty, budget, or human escalation, then report the honest achieved state"
+
+audit_focus:
+  - "every claim linked to a supplied note body and a primary HTTPS source"
+  - "reference relevance and observability proven before execution"
+  - "builder and critic context separation"
+  - "coupling decision recorded before parallel fan-out"
+  - "protected deterministic gates and randomized blind comparison"
+  - "budget, retry, plateau, and human stop controls present"
+  - "integration and regression evidence after component passes"
+  - "final claims match actual verdicts rather than prompt aspirations"
+
+next_action_signals:
+  - "no inspectable reference or no valid outcome grader"
+  - "unresolved high-coupling work assigned in parallel"
+  - "critic sees builder rationale, provenance cues, or mutable acceptance gates"
+  - "quality score improves while a protected correctness or regression gate fails"
+  - "two consecutive cycles show no material improvement"
+  - "cost, wall-clock, token, or retry budget reaches eighty percent"
+  - "different graders disagree on a release-changing verdict"
+  - "a requested action crosses the declared authority boundary"
+
+claim_ledger_policy: "every material claim maps to a supplied brain note and primary URL; single-source claims are marked; promotional claims never corroborate themselves"
+second_source_policy: "required for causal, comparative, numeric, current platform, model capability, cost, safety, and production-readiness claims"
+source_refresh_days: 30
+confidence_policy: "evidence-based, practitioner, contested, folklore"
+canon_seed_count: 12
+canon_targets:
+  - "Gauntlet Loop First-Party Guide"
+  - "Claude of Duty Prompt and Honest Assessment"
+  - "Anthropic Building Effective Agents"
+  - "Anthropic Long-Running Application Harness"
+  - "Anthropic Agent Evaluation Guide"
+  - "Anthropic Multi-Agent Research System"
+  - "Self-Refine"
+  - "Reflexion"
+  - "Judging LLM as a Judge"
+  - "Self-Incorrect"
+  - "Self-Preference Bias in LLM Judges"
+  - "Specification Gaming and Human Intervention"
+canon_fold_targets:
+  - "Concrete Reference"
+  - "One Prompt Is Not One Completion"
+  - "Evaluator Optimizer"
+  - "Fresh Context Critic"
+  - "Protected Graders"
+  - "Coupling-Aware Fan-Out"
+  - "Iterative Refinement"
+  - "Feedback Memory"
+  - "Judge Calibration"
+  - "Self-Evaluation Limits"
+  - "Blind Comparison Bias"
+  - "Stop and Escalation Policy"
+note_line_floor: 80
+wikilink_target: 8
+
+seed_gaps:
+  - "No controlled equal-budget benchmark yet isolates the Gauntlet prompt from model, harness, and extra-compute effects"
+  - "No general method guarantees a model critic can observe dynamic feel, long video pacing, or real user experience from sampled artifacts"
+  - "Same-model fresh-context criticism reduces shared history but does not guarantee independent judgment"
+  - "The best production plateau rule across domains remains unverified"
+  - "AI Marketing Hub domain adapters and acceptance metrics have not yet been implemented or evaluated"
+
+seed_questions:
+  - "Which reference set best represents the intended audience and task rather than merely visual prestige?"
+  - "Which dimensions require deterministic tests, model judges, domain experts, or real users?"
+  - "How should coupling be measured before fan-out?"
+  - "When should a retry use the same critic, a fresh critic, multiple critics, or a human?"
+  - "What evidence is sufficient for dynamic artifacts such as games, video, and interactive products?"
+  - "What equal-budget baseline would show that the loop adds value beyond more inference compute?"
+
+seed_experiments:
+  - "Equal-budget comparison: one-pass agent, iterative single agent, and governed Gauntlet Loop"
+  - "Blind-order probe: run each pairwise judgment in both A-B and B-A order"
+  - "Coupling probe: parallel ownership versus sequential single-owner work on the same integrated concern"
+  - "Critic independence probe: same-context, fresh-context, cross-model, and calibrated human verdicts"
+  - "Plateau probe: quality gain and regression rate across increasing iteration budgets"
+  - "AI Marketing Hub pilot: one opt-in skill with deterministic gates and no external actions"
+
+flow_playbooks:
+  - "Gauntlet Fit and Reference Gate"
+  - "One-Prompt Job Contract"
+  - "Coupling-Aware Decomposition"
+  - "Builder Critic Evidence Loop"
+  - "Blind Comparison and Judge Calibration"
+  - "Integration Regression and Smoothing"
+  - "Budget Plateau and Human Escalation"
+  - "AI Marketing Hub Adapter"
+
+verification_modes:
+  - "protected deterministic outcome and regression checks"
+  - "frozen-reference blind pairwise comparison with randomized order"
+  - "fresh-context rubric critic inspecting the real artifact"
+  - "multi-critic consensus calibrated against human judgments"
+  - "single-owner integration review"
+  - "human approval for high-risk or irreversible actions"
+
+eval_seed_count: 30
+secretary_mode: "single"
+curator_themes:
+  - "one initiating prompt, many governed iterations"
+  - "external evidence over self-description"
+  - "parallel only when independent"
+  - "honest stopping and acceptance"
+publish_surface: "sanitized-quartz"
+public_exclude_patterns:
+  - ".raw"
+  - ".obsidian"
+  - "hot.md"
+  - "log.md"
+  - "references/source-ledger.json"
+  - "references/claim-ledger.md"
+  - "runs"
+  - "private"
+public_content_policy: "publish only source-linked synthesis, compliant short quotes, templates, and synthetic examples; exclude private run evidence and third-party artifacts"
+corpus_scope_policy: "each note states source, retrieval date, harness or domain, supported claims, and explicit non-scope"
+context_budget_policy: "frozen contract plus live progress ledger plus bounded evidence bundles and fresh-context critics"
+retrieval_pattern: "route from fit, reference, decomposition, evaluation, stopping, and integration hubs to primary-source notes"
+provenance_trace_policy: "goal to reference to rubric to artifact to critic verdict to revision to regression gate to acceptance claim"
+memory_governance_policy: "preserve decisions, evidence, dissent, cost, and failures; do not persist secrets or unsupported conclusions; support explicit rollback and forgetting"
+mutation_policy: "advisory by default; ordinary reversible workspace edits only when the user asks to build or fix; no external or irreversible action without exact approval"
+adapter_domain_depth: "domain fit schema plus reference adapter plus grader adapter plus artifact capture plus iteration ledger plus stop controller plus tests"
+live_api_spend_cap_usd: 0
+answer_engine_policy: "answer from supplied primary-source notes, distinguish fact from inference, and return no data when the evidence is missing"
+substance_profile: "fable-grade"
+uncertainty_eval_policy: "reward no data, dissent, and escalation; penalize unsupported certainty, hidden regressions, proxy gaming, and aspirational claims presented as achieved"
