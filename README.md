@@ -1,7 +1,11 @@
 # Gauntlet Loop Brain
 
 <p align="center">
-  <img src="assets/svg/hero-frontispiece.svg" alt="Gauntlet Loop Brain editorial frontispiece" width="100%"/>
+  <img src="assets/visuals/gauntlet-loop-hero.png" alt="Gauntlet Loop Brain, an evidence-gated AI system represented by an armored gauntlet protecting a radiant brain inside an infinity circuit" width="100%"/>
+</p>
+
+<p align="center">
+  <code>AI agents</code> · <code>multi-agent systems</code> · <code>Obsidian</code> · <code>evaluation</code> · <code>agent governance</code>
 </p>
 
 Gauntlet Loop Brain is an evidence-gated Obsidian brain for designing, running, evaluating, and governing one-prompt multi-agent improvement loops.
@@ -11,6 +15,38 @@ quality comes from a capable harness, an inspectable reference, protected
 verification, coupling-aware delegation, integration discipline, and bounded
 iteration. The brain keeps the memorable method and removes the folklore that
 more agents, more rounds, or harsher adjectives guarantee success.
+
+<p align="center">
+  <img src="assets/svg/loop-protocol.svg" alt="Animated Gauntlet Loop protocol moving through freeze, build, critique, verify, integrate, and stop stages" width="100%"/>
+</p>
+
+## At a Glance
+
+```mermaid
+flowchart LR
+    P[One clear prompt] --> F[Freeze the goal and limits]
+    F --> B[Build the artifact]
+    B --> C[Fresh critic inspects it]
+    C --> V{Evidence gates pass?}
+    V -- No --> I[Integrate the largest fix]
+    I --> C
+    V -- Yes --> S[Stop with proof]
+    H[Human stop] -. can interrupt .-> B
+    H -. can interrupt .-> C
+    H -. can interrupt .-> I
+
+    classDef cyan fill:#12364B,stroke:#22D3EE,color:#F8FAFC
+    classDef violet fill:#2B214D,stroke:#8B5CF6,color:#F8FAFC
+    classDef coral fill:#472439,stroke:#FB7185,color:#F8FAFC
+    classDef gold fill:#493919,stroke:#FBBF24,color:#F8FAFC
+    class P,F cyan
+    class B,I violet
+    class C,V coral
+    class S,H gold
+```
+
+The loop does not run forever. It stops when the evidence passes, progress
+plateaus, a regression appears, the budget ends, or a human intervenes.
 
 **Current maturity:** demo-verified research prototype. The structural,
 research, domain-adapter behavior, strict-vault, package-safety, and test gates
@@ -25,6 +61,30 @@ It ships two artifacts:
 
 - `assets/template-brain/` - the distributable Obsidian vault.
 - `SKILL.md` plus `scripts/` - the agent-facing operating layer.
+
+## What the Brain Remembers
+
+```mermaid
+flowchart TB
+    S[Sources and references] --> M[Linked memory]
+    E[Experiments and outcomes] --> M
+    M --> C[Current context]
+    G[Gaps and open questions] --> C
+    C --> D[Decision packet]
+    D --> O[Action, stop, or escalation]
+
+    classDef cyan fill:#12364B,stroke:#22D3EE,color:#F8FAFC
+    classDef violet fill:#2B214D,stroke:#8B5CF6,color:#F8FAFC
+    classDef coral fill:#472439,stroke:#FB7185,color:#F8FAFC
+    classDef gold fill:#493919,stroke:#FBBF24,color:#F8FAFC
+    class S,E cyan
+    class M,C violet
+    class G,D coral
+    class O gold
+```
+
+It keeps evidence, outcomes, gaps, and decisions connected. It does not treat
+model memory or confident prose as proof.
 
 ## Buyer
 

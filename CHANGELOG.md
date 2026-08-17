@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Added a project-native hero, animated loop protocol, and matching vault maps.
+- Added plain-language Mermaid diagrams and discovery tags to the README.
+- Expanded release scanning for modern provider tokens, private keys, JWTs,
+  credential assignments, email addresses, and local paths.
+- Added public-review release notes and the exact private security advisory URL.
+- Corrected the Quartz site surface so it no longer claims an unavailable npm
+  package or a standalone build it cannot perform.
 - Repaired source-map links after canon filenames changed.
 - Added ownership-checked staged installation and ownership-checked uninstall.
 - Expanded local-home-path scanning to cover both `/home` and `/var/home`.

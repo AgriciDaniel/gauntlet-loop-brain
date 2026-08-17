@@ -22,16 +22,35 @@ FORBIDDEN_ENTRY_NAMES = {".env", ".env.local", ".env.production", ".DS_Store", "
 PUBLIC_EXCLUDED_PARTS = {".raw", ".obsidian", "runs", "private"}
 PUBLIC_EXCLUDED_NAMES = {"hot.md", "log.md"}
 PUBLIC_EXCLUDED_PATHS = {"references/source-ledger.json", "references/claim-ledger.md"}
+PUBLIC_REPOSITORY_RAW_ALLOWLIST = {
+    "assets/template-brain/.raw/.manifest.json",
+    "assets/template-brain/.raw/sources/.gitkeep",
+    "examples/sample-vault/.raw/.manifest.json",
+    "examples/sample-vault/.raw/sources/.gitkeep",
+    "examples/sample-vault/.raw/sources/sample-source.md",
+}
 MAX_SCAN_BYTES = 25 * 1024 * 1024
 FORBIDDEN_TEXT_PATTERNS = {
     "local home path": re.compile(rb"/(?:var/)?home/(?!\.\.\.)[A-Za-z0-9_.-]+"),
     "private key": re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
     "openai api key": re.compile(rb"sk-[A-Za-z0-9_-]{20,}"),
     "anthropic api key": re.compile(rb"sk-ant-[A-Za-z0-9_-]{20,}"),
-    "github token": re.compile(rb"(ghp|github_pat)_[A-Za-z0-9_]{20,}"),
+    "github token": re.compile(rb"(?:gh[pousr]_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,})"),
     "aws key": re.compile(rb"AKIA[0-9A-Z]{16}"),
     "google api key": re.compile(rb"AIza[0-9A-Za-z_-]{20,}"),
+    "slack token": re.compile(rb"xox[baprs]-[A-Za-z0-9-]{10,}"),
+    "stripe secret key": re.compile(rb"sk_(?:live|test)_[A-Za-z0-9]{20,}"),
+    "npm token": re.compile(rb"npm_[A-Za-z0-9]{20,}"),
+    "jwt": re.compile(rb"eyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"),
     "bearer literal": re.compile(rb"Bearer\s+[A-Za-z0-9._-]{24,}"),
+    "credential assignment": re.compile(
+        rb"(?i)(?:api[_-]?key|access[_-]?token|client[_-]?secret|password|passwd)"
+        rb"\s*[:=]\s*[\"']?[A-Za-z0-9_./+~=-]{12,}"
+    ),
+    "email address": re.compile(
+        rb"(?<![A-Za-z0-9._%+-])[A-Za-z0-9._%+-]+@"
+        rb"[A-Za-z0-9.-]+\.[A-Za-z]{2,}(?![A-Za-z0-9.-])"
+    ),
 }
 PUBLIC_MARKET_CLAIM_PATTERNS = {
     "validated buyer demand": re.compile(r"\b(?:validated buyer demand|buyer demand (?:is|has been) validated)\b", re.I),
@@ -243,6 +262,8 @@ def scan_source_tree() -> None:
     for path in source_files():
         rel = path.relative_to(REPO)
         if not should_skip(rel):
+            if ".raw" in rel.parts and rel.as_posix() not in PUBLIC_REPOSITORY_RAW_ALLOWLIST:
+                raise SystemExit(f"ERROR: non-fixture raw path found in source repository: {rel.as_posix()}")
             scan_file(path, rel.as_posix())
 
 
