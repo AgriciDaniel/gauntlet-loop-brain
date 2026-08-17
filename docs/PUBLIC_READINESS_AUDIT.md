@@ -12,10 +12,10 @@ local home paths, requested credit-system markers, sensitive filenames, unsafe
 ZIP paths, or symlinks were found in the tracked repository, reachable history,
 or release archives.
 
-The repository uses the Apache License 2.0. It is not yet approved for public
-visibility because private vulnerability reporting is unavailable while the
-repository remains private. A public tag must also be bound to one exact clean
-commit and its matching release artifacts.
+The repository uses the Apache License 2.0 and is public. Private vulnerability
+reporting, secret scanning, push protection, Dependabot security updates, and
+CodeQL default setup are enabled. A public tag must still be bound to one exact
+clean commit and its matching release artifacts.
 
 Market readiness is a separate, stronger gate. Buyer demand, retention, and
 equal-budget advantage remain unvalidated.
@@ -43,7 +43,7 @@ equal-budget advantage remain unvalidated.
 
 ## Repository Governance Review
 
-- Repository visibility: private.
+- Repository visibility: public.
 - Default branch: `main`.
 - Required status check: `test`, strict mode.
 - Admin enforcement, linear history, resolved conversations, force-push
@@ -54,18 +54,21 @@ equal-budget advantage remain unvalidated.
   current workflow uses only SHA-pinned GitHub-owned actions.
 - Dependabot vulnerability alerts and automated security fixes are enabled.
 - Required approvals are currently zero, and code-owner review is not required.
-- Private vulnerability reporting is not currently available.
-- Secret scanning and code scanning are not currently available while the
-  repository is private.
+- Private vulnerability reporting is enabled.
+- Secret scanning and push protection are enabled with zero alerts at the
+  visibility change.
+- CodeQL default setup is configured for Python, and its first analysis passed
+  with zero alerts.
 
-## Required Before Public Visibility
+## Public Visibility Controls
 
-1. Enable and verify private vulnerability reporting.
-2. Review and commit this exact candidate, then rerun the full pipeline on the
-   clean commit.
-3. Produce an `experimental` release manifest with matching checksums.
-4. Enable secret scanning and code scanning when the repository plan and
-   visibility allow them.
+1. Repository visibility is public and `main` remains protected.
+2. Private vulnerability reporting is enabled and linked from `SECURITY.md`.
+3. Secret scanning and push protection are enabled.
+4. Dependabot alerts and automated security fixes are enabled.
+5. Python CodeQL default setup is configured and its first analysis passed.
+6. Tagged artifacts still require an `experimental` release manifest with
+   matching checksums.
 
 Required approvals remain zero because the owner is currently the only
 collaborator. Requiring another approval would deadlock every pull request.
@@ -98,5 +101,5 @@ detect-secrets scan --all-files --no-verify .
 The release pipeline was also rehearsed successfully in an isolated clean Git
 copy so packaging provenance and dirty-worktree checks remained active.
 
-The dated state in `references/publication-readiness.json` keeps public
-packaging fail-closed until private vulnerability reporting is verified enabled.
+The dated state in `references/publication-readiness.json` binds public
+packaging to the verified GitHub governance state.

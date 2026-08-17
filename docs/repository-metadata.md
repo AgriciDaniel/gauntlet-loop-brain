@@ -41,11 +41,11 @@ readiness.
 ## Public Repository Target
 
 - Default branch: `main`
-- Visibility before owner approval: private
+- Visibility: public
 - Required CI status: `test`
 - Recommended merge policy: linear history, no force pushes, no branch deletion
 - Recommended review policy: at least one approval and resolved conversations
-- Recommended security: private vulnerability reporting, secret scanning, and
-  dependency alerts enabled before public launch
-- Recommended Actions policy: read-only default token permissions and immutable
-  SHA pins for every third-party action
+- Security: private vulnerability reporting, secret scanning, push protection,
+  Dependabot security updates, and Python CodeQL default setup enabled
+- Actions policy: GitHub-owned actions only, read-only default token permissions,
+  and immutable SHA pins in the checked-in workflow

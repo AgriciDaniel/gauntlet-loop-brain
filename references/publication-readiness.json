@@ -2,16 +2,22 @@
   "schema": "gauntlet-loop-publication-readiness.v1",
   "repository": "AgriciDaniel/gauntlet-loop-brain",
   "verified_at": "2026-08-18",
-  "visibility": "private",
-  "private_vulnerability_reporting_enabled": false,
-  "secret_scanning_available": false,
-  "code_scanning_available": false,
+  "visibility": "public",
+  "private_vulnerability_reporting_enabled": true,
+  "secret_scanning_available": true,
+  "secret_scanning_enabled": true,
+  "secret_scanning_push_protection_enabled": true,
+  "secret_scanning_alerts_at_verification": 0,
+  "code_scanning_available": true,
+  "codeql_default_setup": "configured",
+  "codeql_first_analysis_conclusion": "success",
+  "code_scanning_alerts_at_verification": 0,
   "dependabot_alerts_enabled": true,
   "automated_security_fixes_enabled": true,
   "actions_policy": "github-owned-actions-only",
   "notes": [
-    "The repository remains private by owner instruction.",
-    "Public release packaging stays blocked until private vulnerability reporting is verified enabled.",
-    "Secret scanning and code scanning should be rechecked immediately before any visibility change."
+    "The owner approved public visibility after a full source, history, archive, email, and CI-log secret audit.",
+    "Private vulnerability reporting, secret scanning, and push protection were verified after the visibility change.",
+    "The first Python CodeQL analysis completed successfully with zero alerts."
   ]
 }

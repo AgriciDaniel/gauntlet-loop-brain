@@ -6,6 +6,8 @@
 - Added plain-language Mermaid diagrams and discovery tags to the README.
 - Added clear Free and Pro AI Marketing Hub community links.
 - Adopted the Apache License 2.0 across repository and package metadata.
+- Published the source repository with private vulnerability reporting, secret
+  scanning, push protection, Dependabot, and Python CodeQL enabled.
 - Added a pinned sample-vault tree hash and mutation-sensitive integrity tests.
 - Documented semantic release tags and public repository metadata.
 - Expanded release scanning for modern provider tokens, private keys, JWTs,
