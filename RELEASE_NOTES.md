@@ -2,7 +2,7 @@
 
 ## v0.1.0, Public Experimental Preview (planned)
 
-**Status:** private review candidate, not published and not tagged.
+**Status:** public source repository, not tagged and without a GitHub release.
 
 Gauntlet Loop Brain is a demo-verified research prototype. This candidate
 focuses on understandable documentation, reproducible vault behavior, and
@@ -28,9 +28,9 @@ honest release boundaries.
 - This is an experimental research tool, not a market-ready product.
 - Buyer demand, retention, and equal-budget advantage over simpler workflows
   remain unvalidated.
-- The current repository remains private while the owner reviews the candidate.
 - The owner selected the Apache License 2.0 for source distribution.
-- Public visibility still requires enabled private vulnerability reporting.
+- Private vulnerability reporting, secret scanning, push protection, Dependabot,
+  and CodeQL default setup are enabled.
 
 ### Tag Policy
 

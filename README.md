@@ -67,10 +67,10 @@ research, domain-adapter behavior, strict-vault, package-safety, and test gates
 pass. The repo is not market-ready because buyer demand, retention, and
 equal-budget advantage over simpler workflows remain unvalidated. Those market
 claims are separate from publication safety. The repository uses the Apache
-License 2.0. An experimental public release is allowed only after clean Git
-commit provenance is available, the repository target and exact private-reporting
-URL agree, private vulnerability reporting is verified enabled, and the public
-artifact safety gates pass. Until then, every package is internal only.
+License 2.0. The public source repository has passed its publication-safety
+gates, with private vulnerability reporting, secret scanning, push protection,
+and CodeQL enabled. Tagged artifacts still require one exact clean commit,
+matching checksums, and a successful release manifest.
 
 It ships two artifacts:
 
